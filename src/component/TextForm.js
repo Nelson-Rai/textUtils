@@ -6,22 +6,31 @@ export default function TextForm(props) {
     const handleUpClick = () => {
         let newText = text.toUpperCase();
         setText(newText)
+        document.title = 'Text-Util Uppercase'
+        props.showAlert("Text changed to Uppercase.", 'success')
     }
     const handleOnChange = (event) => {
         setText(event.target.value)
+
     }
     const handleLoClick = () => {
         let newText = text.toLowerCase();
         setText(newText)
+        document.title = 'Text-Util Lowercase'
+        props.showAlert("Text changed to lowercase.", 'success')
     }
     const handleClearClick = () => {
         let newText = '';
         setText(newText)
+        document.title = 'Text-Util cleared'
+        props.showAlert("All text cleared.", 'warning')
     }
     const handleCopy = () => {
         let text = document.getElementById('myBox')
         text.select();
         navigator.clipboard.writeText(text.value);
+        document.title = 'Text-Util copied'
+        props.showAlert("Text copied to clipboard.", 'success')
     }
     const handleCapClick = () => {
         let nText = text.toLowerCase();
@@ -29,10 +38,14 @@ export default function TextForm(props) {
         let capitalizeWord = words.map(word => word.charAt(0).toUpperCase() + word.slice(1))
         let newText = capitalizeWord.join(' ')
         setText(newText)
+        document.title = 'Text-Util Capitalized'
+        props.showAlert("Text are capitalized.", 'success')
     }
     const handleExtraSpaces = () => {
         let newText = text.split(/[ ]+/);
         setText(newText.join(" "))
+        document.title = 'Text-Util Extra Space'
+        props.showAlert("Extra spaces cleared.", 'success')
     }
     const [text, setText] = useState('Enter Text Here.')
   return (
